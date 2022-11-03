@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { createUser } from '../services/userAPI';
 
 class Login extends Component {
   state = {
@@ -12,7 +13,7 @@ class Login extends Component {
       name: target.value,
     }, () => {
       this.setState((prevState) => ({
-        isButtonDisabled: prevState.name.length <= MIN_CHARACTERS,
+        isButtonDisabled: prevState.name.length < MIN_CHARACTERS,
       }));
     });
   };
@@ -25,6 +26,7 @@ class Login extends Component {
         <form>
           <input
             type="text"
+            name="name"
             data-testid="login-name-input"
             value={ name }
             onChange={ this.handleChange }
@@ -33,6 +35,7 @@ class Login extends Component {
             type="button"
             data-testid="login-submit-button"
             disabled={ isButtonDisabled }
+            onClick={ () => createUser({ name }) }
           >
             Entrar
           </button>
