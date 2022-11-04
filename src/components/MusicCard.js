@@ -18,8 +18,7 @@ class MusicCard extends Component {
           Favorita
           <input
             type="checkbox"
-            name="checked"
-            checked={ checked }
+            defaultChecked={ checked }
             id="fave-check"
             data-testid={ `checkbox-music-${trackId}` }
             onChange={ onCheck }
