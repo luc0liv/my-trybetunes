@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
+import MusicCard from '../components/MusicCard';
 import getMusics from '../services/musicsAPI';
 
 class Album extends Component {
@@ -26,9 +27,15 @@ class Album extends Component {
         <Header />
         <h1 data-testid="page-album">Album</h1>
         <h2 data-testid="artist-name">{artist}</h2>
-        <h2 data-testid="album-name">{album}</h2>
+        <h3 data-testid="album-name">{album}</h3>
         <div>
-          { musicList.map((music, index) => <p key={ index }>{music.trackName}</p>)}
+          { musicList.map((music, index) => (
+            index >= 1 && <MusicCard
+              key={ music.trackId }
+              previewUrl={ music.previewUrl }
+              trackName={ music.trackName }
+            />
+          ))}
         </div>
       </div>
     );
