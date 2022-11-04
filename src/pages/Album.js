@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import MusicCard from '../components/MusicCard';
 import getMusics from '../services/musicsAPI';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class Album extends Component {
   state = {
@@ -20,12 +20,18 @@ class Album extends Component {
       },
     } = this.props;
     const musicList = await getMusics(id);
+    this.setState({ loading: true });
+    const favoriteSongs = await getFavoriteSongs();
+    localStorage.setItem('favoriteSongs', JSON.stringify(favoriteSongs));
     this.setState({
       musicList,
       artist: musicList[0].artistName,
       album: musicList[0].collectionName,
+      loading: false,
     });
   }
+
+  compareForFaves = (songs, id) => songs.some((song) => song.trackId === id);
 
   addFaveSong = async (song) => {
     this.setState({ loading: true });
@@ -35,6 +41,7 @@ class Album extends Component {
 
   render() {
     const { musicList, artist, album, loading } = this.state;
+    const faveList = JSON.parse(localStorage.getItem('favoriteSongs'));
     return (
       <div>
         <Header />
@@ -52,6 +59,7 @@ class Album extends Component {
                 trackId={ music.trackId }
                 loading={ loading }
                 onCheck={ () => this.addFaveSong(music) }
+                checked={ this.compareForFaves(faveList, music.trackId) }
               />
             ),
           )}
