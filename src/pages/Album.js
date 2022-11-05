@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import MusicCard from '../components/MusicCard';
 import getMusics from '../services/musicsAPI';
-import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 
 class Album extends Component {
   state = {
@@ -33,9 +33,13 @@ class Album extends Component {
 
   compareForFaves = (songs, id) => songs.some((song) => song.trackId === id);
 
-  addFaveSong = async (song) => {
+  addOrRemoveSong = async ({ target }, song) => {
     this.setState({ loading: true });
-    await addSong(song);
+    if (target.checked) {
+      await addSong(song);
+    } else {
+      await removeSong(song);
+    }
     this.setState({ loading: false });
   };
 
@@ -58,7 +62,7 @@ class Album extends Component {
                 trackName={ music.trackName }
                 trackId={ music.trackId }
                 loading={ loading }
-                onCheck={ () => this.addFaveSong(music) }
+                onCheck={ (event) => this.addOrRemoveSong(event, music) }
                 checked={ this.compareForFaves(faveList, music.trackId) }
               />
             ),
