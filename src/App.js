@@ -65,7 +65,12 @@ class App extends React.Component {
         <Route
           path="/profile/edit"
           render={ (props) => (
-            <ProfileEdit { ...this.state } isButtonDisabled={ isButtonDisabled } handleChange={ this.handler } saveUser={ () => this.saveUser(props) } />
+            <ProfileEdit
+              { ...this.state }
+              isButtonDisabled={ isButtonDisabled }
+              handleChange={ this.handler }
+              saveUser={ () => this.saveUser(props) }
+            />
           ) }
         />
         <Route path="/profile" render={ () => <Profile { ...this.state } /> } />
