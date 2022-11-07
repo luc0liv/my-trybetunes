@@ -29,8 +29,6 @@ class Favorites extends Component {
     );
   };
 
-  compareForFaves = (songs, id) => songs.some((song) => song.trackId === id);
-
   render() {
     const { loading, favoriteSongs } = this.state;
     const loadingElement = <p>Carregando...</p>;
@@ -45,7 +43,7 @@ class Favorites extends Component {
             trackName={ song.trackName }
             trackId={ +song.trackId }
             onCheck={ () => this.removeFaveSong(song, index) }
-            checked={ this.compareForFaves(favoriteSongs, song.trackId) }
+            checked
           />
         )) }
       </div>
