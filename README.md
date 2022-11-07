@@ -13,6 +13,7 @@
 - ReactJs
 - Javascript
 - CSS
+- Tailwind
 
 ## Deploy
 
