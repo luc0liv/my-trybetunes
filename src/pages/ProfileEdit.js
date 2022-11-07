@@ -12,6 +12,7 @@ class ProfileEdit extends Component {
       loading,
       handleChange,
       saveUser,
+      isButtonDisabled,
     } = this.props;
     const loadingElement = <p>Carregando...</p>;
     return (
@@ -65,6 +66,7 @@ class ProfileEdit extends Component {
                 type="button"
                 data-testid="edit-button-save"
                 onClick={ saveUser }
+                disabled={ isButtonDisabled }
               >
                 Salvar
               </button>
@@ -82,6 +84,7 @@ ProfileEdit.propTypes = {
   loading: PropTypes.bool.isRequired,
   handleChange: PropTypes.func.isRequired,
   saveUser: PropTypes.func.isRequired,
+  isButtonDisabled: PropTypes.bool.isRequired,
 };
 
 export default ProfileEdit;

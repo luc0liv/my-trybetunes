@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Album from './pages/Album';
 import Favorites from './pages/Favorites';
 import Login from './pages/Login';
@@ -8,6 +8,7 @@ import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
 import Search from './pages/Search';
 import { getUser, updateUser } from './services/userAPI';
+import validateDisabledButton from './helpers/validation';
 
 class App extends React.Component {
   state = {
@@ -16,6 +17,7 @@ class App extends React.Component {
     email: '',
     description: '',
     image: '',
+    isButtonDisabled: true,
   };
 
   async componentDidMount() {
@@ -24,9 +26,16 @@ class App extends React.Component {
 
   handler = ({ target }) => {
     const { value, name } = target;
-    this.setState({
-      [name]: value,
-    });
+    this.setState(
+      {
+        [name]: value,
+      },
+      () => {
+        this.setState((prevState) => ({
+          isButtonDisabled: validateDisabledButton(prevState),
+        }));
+      },
+    );
   };
 
   saveUser = async (props) => {
@@ -50,12 +59,13 @@ class App extends React.Component {
   };
 
   render() {
+    const { isButtonDisabled } = this.state;
     return (
       <Switch>
         <Route
           path="/profile/edit"
           render={ (props) => (
-            <ProfileEdit { ...this.state } handleChange={ this.handler } saveUser={ () => this.saveUser(props) } />
+            <ProfileEdit { ...this.state } isButtonDisabled={ isButtonDisabled } handleChange={ this.handler } saveUser={ () => this.saveUser(props) } />
           ) }
         />
         <Route path="/profile" render={ () => <Profile { ...this.state } /> } />
