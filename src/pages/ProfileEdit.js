@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
+import Loading from '../components/Loading';
 
 class ProfileEdit extends Component {
   render() {
@@ -14,12 +15,12 @@ class ProfileEdit extends Component {
       saveUser,
       isButtonDisabled,
     } = this.props;
-    const loadingElement = <p>Carregando...</p>;
+
     return (
       <div>
         <Header />
-        <h1 data-testid="page-profile-edit">Editar perfil</h1>
-        { loading ? loadingElement
+        <h1 data-testid="page-profile-edit" className="bg-orange-600">Editar perfil</h1>
+        { loading ? <Loading />
           : (
             <form>
               <label htmlFor="username">

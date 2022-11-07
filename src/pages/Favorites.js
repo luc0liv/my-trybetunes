@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
 import MusicCard from '../components/MusicCard';
+import Loading from '../components/Loading';
 import { getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 
 class Favorites extends Component {
@@ -31,12 +32,11 @@ class Favorites extends Component {
 
   render() {
     const { loading, favoriteSongs } = this.state;
-    const loadingElement = <p>Carregando...</p>;
     return (
       <div>
         <Header />
         <h1 data-testid="page-favorites">Favorites</h1>
-        { loading ? loadingElement : favoriteSongs.map((song, index) => (
+        { loading ? <Loading /> : favoriteSongs.map((song, index) => (
           <MusicCard
             key={ song.trackId }
             previewUrl={ song.previewUrl }
