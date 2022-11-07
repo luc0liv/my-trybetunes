@@ -20,11 +20,11 @@ class App extends React.Component {
     isButtonDisabled: true,
   };
 
-  async componentDidMount() {
+  componentDidMount() {
     this.getLoggedUser();
   }
 
-  handler = ({ target }) => {
+  handleChange = ({ target }) => {
     const { value, name } = target;
     this.setState(
       {
@@ -68,7 +68,7 @@ class App extends React.Component {
             <ProfileEdit
               { ...this.state }
               isButtonDisabled={ isButtonDisabled }
-              handleChange={ this.handler }
+              handleChange={ this.handleChange }
               saveUser={ () => this.saveUser(props) }
             />
           ) }
