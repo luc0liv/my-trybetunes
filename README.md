@@ -16,6 +16,7 @@
 - Tailwind
 
 ## Deploy
+https://my-trybetunes.vercel.app/
 
 ## Como rodar a aplicação
 
