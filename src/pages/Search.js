@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
+import Loading from '../components/Loading';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 
 class Search extends Component {
@@ -47,13 +48,13 @@ class Search extends Component {
 
   render() {
     const { artist, isButtonDisabled, loading, albums, message } = this.state;
-    const loadingElement = <p>Carregando...</p>;
+
     return (
       <div>
         <Header />
         <h1 data-testid="page-search">Search</h1>
         {loading ? (
-          loadingElement
+          <Loading />
         ) : (
           <form>
             <input

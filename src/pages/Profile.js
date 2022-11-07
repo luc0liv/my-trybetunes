@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
+import Loading from '../components/Loading';
 
 class Profile extends Component {
   render() {
     const { name, email, description, image, loading } = this.props;
-    const loadingElement = <p>Carregando...</p>;
+
     return (
       <div>
         <Header />
         <h1 data-testid="page-profile">Profile</h1>
         {loading ? (
-          loadingElement
+          <Loading />
         ) : (
           <section>
             <div>
