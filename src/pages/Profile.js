@@ -1,32 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Header from '../components/Header';
-import { getUser } from '../services/userAPI';
 
 class Profile extends Component {
-  state = {
-    loading: false,
-    name: '',
-    email: '',
-    description: '',
-    image: '',
-  };
-
-  async componentDidMount() {
-    this.setState({ loading: true });
-    const user = await getUser();
-    const { name, email, description, image } = user;
-    this.setState({
-      name,
-      email,
-      description,
-      image,
-      loading: false,
-    });
-  }
-
   render() {
-    const { name, email, description, image, loading } = this.state;
+    const { name, email, description, image, loading } = this.props;
     const loadingElement = <p>Carregando...</p>;
     return (
       <div>
@@ -51,5 +30,13 @@ class Profile extends Component {
     );
   }
 }
+
+Profile.propTypes = {
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  loading: PropTypes.bool.isRequired,
+};
 
 export default Profile;
