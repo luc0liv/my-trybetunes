@@ -61,7 +61,6 @@ class Album extends Component {
                 previewUrl={ music.previewUrl }
                 trackName={ music.trackName }
                 trackId={ music.trackId }
-                loading={ loading }
                 onCheck={ (event) => this.addOrRemoveSong(event, music) }
                 checked={ this.compareForFaves(faveList, music.trackId) }
               />
