@@ -39,7 +39,9 @@ class Login extends Component {
   render() {
     const { name, isButtonDisabled, loading } = this.state;
     const flex = 'flex flex-col items-center justify-center w-full';
-    const sectionClass = `${flex} bg-blue p-2 md:p-6 h-screen`;
+    const gradient = `bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] 
+    from-fuchsia-300 via-teaGreen to-blue`;
+    const sectionClass = `${flex} p-2 md:p-6 h-screen ${gradient}`;
     const formClass = `${flex} gap-y-4`;
     return (
       <section data-testid="page-login" className={ sectionClass }>
