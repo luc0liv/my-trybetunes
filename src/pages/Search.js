@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
+import Button from '../components/Button';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 
 class Search extends Component {
@@ -63,14 +64,13 @@ class Search extends Component {
               onChange={ this.handleChange }
               data-testid="search-artist-input"
             />
-            <button
-              type="button"
-              data-testid="search-artist-button"
-              disabled={ isButtonDisabled }
-              onClick={ () => this.searchAlbums(artist) }
-            >
-              Procurar
-            </button>
+            <Button
+              name="Procurar"
+              testId="search-artist-button"
+              isButtonDisabled={ isButtonDisabled }
+              onButtonClick={ () => this.searchAlbums(artist) }
+              customClass="search"
+            />
           </form>
         )}
         {albums.length >= 1 ? (
