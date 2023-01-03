@@ -13,7 +13,10 @@ class Button extends Component {
   };
 
   render() {
-    const { name, customClass, onButtonClick, isButtonDisabled, testId } = this.props;
+    const {
+      name, customClass, onButtonClick, isButtonDisabled, testId,
+    } = this.props;
+
     return (
       <button
         type="button"
