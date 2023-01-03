@@ -5,7 +5,9 @@ class Button extends Component {
   render() {
     const { name, customClass } = this.props;
     return (
-      <button type="button" className={ customClass }>{ name }</button>
+      <button type="button" className={ customClass }>
+        {name}
+      </button>
     );
   }
 }
