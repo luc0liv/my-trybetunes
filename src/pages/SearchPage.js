@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import Search from '../components/Search';
+import AlbumCard from '../components/AlbumCard';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 
 class SearchPage extends Component {
@@ -65,21 +66,23 @@ class SearchPage extends Component {
           />
         )}
         {albums.length >= 1 ? (
-          <p>{message}</p>
+          <section>
+            <p>{message}</p>
+            <ul className="flex flex-wrap gap-2 w-full p-4">
+              {albums.map((album) => (
+                <AlbumCard
+                  key={ album.collectionId }
+                  url={ `album/${album.collectionId}` }
+                  testId={ `link-to-album-${album.collectionId}` }
+                  albumName={ album.collectionName }
+                  image={ album.artworkUrl100 }
+                />
+              ))}
+            </ul>
+          </section>
         ) : (
           <p>Nenhum álbum foi encontrado</p>
         )}
-        <ul>
-          {albums.map((album) => (
-            <Link
-              key={ album.collectionId }
-              to={ `album/${album.collectionId}` }
-              data-testid={ `link-to-album-${album.collectionId}` }
-            >
-              {album.collectionName}
-            </Link>
-          ))}
-        </ul>
       </div>
     );
   }
