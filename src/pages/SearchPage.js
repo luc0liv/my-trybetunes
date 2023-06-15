@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
+import Search from '../components/Search';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 
-class Search extends Component {
+class SearchPage extends Component {
   state = {
     artist: '',
     isButtonDisabled: true,
@@ -56,22 +57,12 @@ class Search extends Component {
         {loading ? (
           <Loading />
         ) : (
-          <form>
-            <input
-              placeholder="Nome do artista"
-              value={ artist }
-              onChange={ this.handleChange }
-              data-testid="search-artist-input"
-            />
-            <button
-              type="button"
-              data-testid="search-artist-button"
-              disabled={ isButtonDisabled }
-              onClick={ () => this.searchAlbums(artist) }
-            >
-              Procurar
-            </button>
-          </form>
+          <Search
+            artist={ artist }
+            onButtonClick={ () => this.searchAlbums(artist) }
+            onInputChange={ this.handleChange }
+            isButtonDisabled={ isButtonDisabled }
+          />
         )}
         {albums.length >= 1 ? (
           <p>{message}</p>
@@ -94,4 +85,4 @@ class Search extends Component {
   }
 }
 
-export default Search;
+export default SearchPage;

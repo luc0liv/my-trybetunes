@@ -6,9 +6,9 @@ import Login from './pages/Login';
 import PageNotFound from './pages/PageNotFound';
 import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
-import Search from './pages/Search';
 import { getUser, updateUser } from './services/userAPI';
 import validateDisabledButton from './helpers/validation';
+import SearchPage from './pages/SearchPage';
 
 class App extends React.Component {
   state = {
@@ -76,7 +76,7 @@ class App extends React.Component {
         <Route path="/profile" render={ () => <Profile { ...this.state } /> } />
         <Route path="/album/:id" component={ Album } />
         <Route path="/favorites" component={ Favorites } />
-        <Route path="/search" component={ Search } />
+        <Route path="/search" component={ SearchPage } />
         <Route exact path="/" component={ Login } />
         <Route path="*" component={ PageNotFound } />
       </Switch>
