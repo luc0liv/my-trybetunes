@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { createUser } from '../services/userAPI';
 import Loading from '../components/Loading';
+import logo from '../assets/images/logo.png';
 
 class Login extends Component {
   state = {
@@ -42,13 +43,22 @@ class Login extends Component {
     const gradient = `bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] 
     from-fuchsia-300 via-teaGreen to-blue`;
     const sectionClass = `${flex} p-2 md:p-6 h-screen ${gradient}`;
-    const formClass = `${flex} gap-y-4`;
+    const composition = 'gap-y-4 bg-white bg-opacity-30 px-10 py-8 rounded-lg md:w-2/6';
+    const formClass = `${flex} ${composition}`;
+    const buttonBase = 'w-full p-2 font-semibold rounded';
+    const buttonEnabled = 'bg-darkPurple text-blue';
+    const buttonDisabled = 'bg-blue text-black';
+
     return (
       <section data-testid="page-login" className={ sectionClass }>
-        <h1 className="font-bold text-4xl mb-6 text-darkPurple">Login</h1>
+        <div className="flex items-center justify-around w-6/12 mb-6">
+          <h1 className="font-bold text-4xl text-darkPurple">Trybetunes</h1>
+          <img src={ logo } alt="Trybetunes logo" className="w-8" />
+        </div>
         <form className={ formClass }>
+          <h2 className="font-bold text-2xl text-pink">Login</h2>
           <input
-            className="rounded w-full md:w-2/4 p-2 placeholder-pink text-pink"
+            className="rounded w-full p-2 placeholder-pink text-pink"
             type="text"
             name="name"
             data-testid="login-name-input"
@@ -61,8 +71,9 @@ class Login extends Component {
             data-testid="login-submit-button"
             disabled={ isButtonDisabled }
             onClick={ () => this.createUserRequest(name) }
-            className={ `w-full 
-            md:w-2/4 bg-darkPurple p-2 text-blue font-semibold rounded` }
+            className={ `${isButtonDisabled
+              ? buttonDisabled
+              : buttonEnabled} ${buttonBase}` }
           >
             Entrar
           </button>
