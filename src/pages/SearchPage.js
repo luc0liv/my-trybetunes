@@ -54,35 +54,36 @@ class SearchPage extends Component {
     return (
       <div>
         <Header />
-        <h1 data-testid="page-search">Search</h1>
-        {loading ? (
-          <Loading />
-        ) : (
-          <Search
-            artist={ artist }
-            onButtonClick={ () => this.searchAlbums(artist) }
-            onInputChange={ this.handleChange }
-            isButtonDisabled={ isButtonDisabled }
-          />
-        )}
-        {albums.length >= 1 ? (
-          <section>
-            <p>{message}</p>
-            <ul className="flex flex-wrap gap-2 w-full p-4">
-              {albums.map((album) => (
-                <AlbumCard
-                  key={ album.collectionId }
-                  url={ `album/${album.collectionId}` }
-                  testId={ `link-to-album-${album.collectionId}` }
-                  albumName={ album.collectionName }
-                  image={ album.artworkUrl100 }
-                />
-              ))}
-            </ul>
-          </section>
-        ) : (
-          <p>Nenhum álbum foi encontrado</p>
-        )}
+        <div className="flex flex-col items-center justify-center px-2">
+          {loading ? (
+            <Loading />
+          ) : (
+            <Search
+              artist={ artist }
+              onButtonClick={ () => this.searchAlbums(artist) }
+              onInputChange={ this.handleChange }
+              isButtonDisabled={ isButtonDisabled }
+            />
+          )}
+          {albums.length >= 1 ? (
+            <section>
+              <p className="font-semibold text-sm px-4">{message}</p>
+              <ul className="flex flex-wrap gap-4 w-full p-4 justify-start">
+                {albums.map((album) => (
+                  <AlbumCard
+                    key={ album.collectionId }
+                    url={ `album/${album.collectionId}` }
+                    testId={ `link-to-album-${album.collectionId}` }
+                    albumName={ album.collectionName }
+                    image={ album.artworkUrl100 }
+                  />
+                ))}
+              </ul>
+            </section>
+          ) : (
+            <p className="mt-2 text-sm text-pink">Nenhum álbum foi encontrado</p>
+          )}
+        </div>
       </div>
     );
   }

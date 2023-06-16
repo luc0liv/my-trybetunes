@@ -6,7 +6,7 @@ class AlbumCard extends Component {
   render() {
     const { url, testId, albumName, image } = this.props;
     const container = `flex flex-col items-center 
-    justify-center w-full md:w-2/12 flex-auto p-4 gap-y-2`;
+    justify-center w-full sm:w-2/12 flex-auto p-4 gap-y-2`;
     const textStyle = 'font-bold text-center text-xs';
     const bgStyle = 'bg-fuchsia-200 rounded-md';
 
