@@ -25,24 +25,28 @@ class Header extends Component {
     return (
       <header
         data-testid="header-component"
-        className={ `${headerStyle} shadow-sm` }
+        className={ `${headerStyle} shadow-sm w-full` }
       >
         <nav className="flex flex-wrap items-center justify-center md:justify-between">
-          <div className="flex justify-between items-center w-full md:w-2/6">
-            <Link to="/search" data-testid="link-to-search" className="hover:opacity-60">
+          <div className="flex flex-wrap justify-between items-center w-full md:w-2/6">
+            <Link
+              to="/search"
+              data-testid="link-to-search"
+              className="hover:opacity-60 text-xs sm:text-base"
+            >
               Search
             </Link>
             <Link
               to="/favorites"
               data-testid="link-to-favorites"
-              className="hover:opacity-60"
+              className="hover:opacity-60 text-xs sm:text-base"
             >
               Favorites
             </Link>
             <Link
               to="/profile"
               data-testid="link-to-profile"
-              className="hover:opacity-60"
+              className="hover:opacity-60 text-xs sm:text-base"
             >
               Profile
             </Link>
